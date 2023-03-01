@@ -1,7 +1,9 @@
 FROM httpd:bullseye
 ARG TARGETARCH
-RUN apt update \
-    && apt install -y msmtp msmtp-mta imgp \
+RUN apt-get update \
+    && apt-get install --no-install-recommends -y msmtp msmtp-mta imgp \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* \
     && mkdir -p /var/www/html/ \
     && mkdir -p /usr/local/libxml2.7.8/ \
     && mkdir -p /etc/php/5.3/cgi/
@@ -28,6 +30,6 @@ RUN  ln -s libxml2.so.2.7.8 libxml2.so.2 \
   && ln -s libxml2.so.2.7.8 libxml2.so
 
 # コンテンツの設置
-ADD entrypoint.taz /root/
+COPY entrypoint.taz /root/
 WORKDIR /var/www/
-ENTRYPOINT /root/entrypoint.sh
+ENTRYPOINT ["/root/entrypoint.sh"]
