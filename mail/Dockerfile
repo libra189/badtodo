@@ -1,3 +1,3 @@
 FROM schickling/mailcatcher
-ADD  scripts.taz /root/
+COPY  scripts.taz /root/
 CMD ["/root/run.sh"]
