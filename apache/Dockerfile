@@ -30,6 +30,6 @@ RUN  ln -s libxml2.so.2.7.8 libxml2.so.2 \
   && ln -s libxml2.so.2.7.8 libxml2.so
 
 # コンテンツの設置
-COPY entrypoint.taz /root/
+ADD entrypoint.taz /root/
 WORKDIR /var/www/
 ENTRYPOINT ["/root/entrypoint.sh"]
